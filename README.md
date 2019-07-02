@@ -1,43 +1,26 @@
-Jest to projekt programu wspó³bie¿nego, stanowi¹cy symulator dzia³ania przedsiêbiorstwa.
+Jest to projekt programu wspÃ³Å‚bieÅ¼nego, stanowiÄ…cy symulator dziaÅ‚ania przedsiÄ™biorstwa. ZostaÅ‚ napisany w 2 wersjach (jÄ™zkach) : Ada i GO.
 
 
-Napisany w 2 wersjach (jêzkach) : Ada i GO
+Zasady dziaÅ‚ania przedsiÄ™biorstwa :
 
 
-Symuluje ma³¹ firmê zarz¹dzan¹ jedno-osobowo, z niewielk¹ liczb¹ pracowników. 
+Jest to maÅ‚a firma zarzÄ…dzanÄ… jedno-osobowo, z niewielkÄ… liczbÄ… pracownikÃ³w. Prezes firmy, w losowych odstÄ™pach czasu, wymyÅ›la kolejne zadania do wykonania dla pracownikÃ³w i umieszcza je na liÅ›cie zadaÅ„. (Przyjmujemy, Å¼e zadanie ma postaÄ‡ rekordu o nastÄ™pujÄ…cych polach: pierwszy argument, drugi argument, operator arytmetyczny: dodawanie, odejmowanie albo mnoÅ¼enie. Zadanie polega na â€œwytworzeniuâ€ wyniku operacji arytmetycznej).
 
+KaÅ¼dy pracownik, co pewien czas, pobiera kolejne zadanie z listy zadaÅ„ i je wykonuje. W wyniku powstaje pewien produkt, ktÃ³ry pracownik umieszcza w magazynie. Do magazynu, co pewien czas, przychodzi klient i zabiera (kupuje) jakieÅ› produkty.
 
-Prezes firmy, w losowych odstêpach czasu,  wymyœla kolejne zadania do wykonania dla pracowników i umieszcza je na liœcie zadañ.
-(Przyjmujemy, ¿e zadanie ma postaæ rekordu o nastêpuj¹cych polach: pierwszy argument, drugi argument, operator arytmetyczny: dodawanie, odejmowanie albo mno¿enie.
-Zadanie polega na “wytworzeniu” wyniku operacji arytmetycznej).
+Wszystkie zadania sÄ… wykonywane na maszynach. Zadania umieszczane na liÅ›cie zadaÅ„ sÄ… w postaci czÄ™Å›ciowo wypeÅ‚nionych rekordÃ³w o nastÄ™pujÄ…cych polach: argument_1, operator (dodawania albo mnoÅ¼enia), argument_2, pole_na_wynik.
 
-Ka¿dy pracownik, co pewien czas, pobiera kolejne zadanie z listy zadañ i je wykonuje. W wyniku powstaje pewien produkt, który pracownik umieszcza w magazynie.
-Do magazynu, co pewien czas, przychodzi klient i zabiera (kupuje) jakieœ produkty.
+Pracownik pobiera caÅ‚y rekord z listy zadaÅ„, a nastÄ™pnie wykonuje zadanie na maszynie odpowiedniego typu dla danego operatora.
+Instrukcja obsÅ‚ugi maszyny: Pracownik umieszcza rekord z zadaniem do wykonania w maszynie, Maszyna przez pewien czas wykonuje zadanÄ… operacjÄ™ i umieszcza wynik w polu pole_na_wynik. Pracownik moÅ¼e wtedy odebraÄ‡ rekord z wynikiem i przenieÅ›Ä‡ go do magazynu. KaÅ¼dy pracownik przy swoich narodzinach podejmuje losowÄ… decyzjÄ™ czy jest â€œcierpliwyâ€, czy â€œniecierpliwyâ€. Cierpliwi pracownicy czekajÄ… w kolejce aÅ¼ maszyna przyjmie ich zadanie do obsÅ‚ugi. Niecierpliwi pracownicy krÄ…Å¼Ä… ze swoim zadaniem miÄ™dzy maszynami,  czekajÄ…c jedynie przez krÃ³tki czas przy kaÅ¼dej z nich, aÅ¼ uda im siÄ™ uzyskaÄ‡ dostÄ™p do jednej z nich.
+KaÅ¼dy pracownik prowadzi statystyki: ile udaÅ‚o mu siÄ™ wykonaÄ‡ zadaÅ„. ZakÅ‚adamy, Å¼e maszyny liczÄ…ce mogÄ… ulegaÄ‡ awariom. 
+W przypadku awarii, maszyna bÄ™dzie uszkodzona aÅ¼ do jej naprawy zwracajÄ…c kaÅ¼de zadanie z pustym polem na wynik,
+a pracownik, ktÃ³ry dostaje taki  taki zwrot, zgÅ‚asza awariÄ™ do serwisu i usiÅ‚uje wykonaÄ‡ swoje zadanie na innej maszynie tego samego typu. Serwis, po otrzymaniu zgÅ‚oszenia o awarii maszyny,  wysyÅ‚a swojego pracownika serwisowego do jej naprawy.  (Serwis i pracownik serwisowy majÄ… byÄ‡ osobnymi wÄ…tkami. Liczba pracownikÃ³w serwisowych jest ograniczona, mniejsza niÅ¼ liczba maszyn.)
+Pracownik serwisowy po dotarciu do maszyny (co zajmuje mu pewien czas) wykonuje naprawÄ™ usterki, co polega na wysÅ‚aniu do niej specjalnego polecenia przez specjalny kanaÅ‚ "backdoor". Po wykonaniu naprawy, pracownik serwisowy zgÅ‚asza usuniÄ™cie awarii do serwisu.
 
-Wszystkie zadania s¹ wykonywane na maszynach.
-Zadania umieszczane na liœcie zadañ s¹ w postaci czêœciowo wype³nionych rekordów o nastêpuj¹cych polach: argument_1, operator (dodawania albo mno¿enia), argument_2, pole_na_wynik.
+Symulator dziaÅ‚a w dwÃ³ch trybach: w trybie â€œgadatliwymâ€ albo w trybie â€œspokojnymâ€.
 
-Pracownik pobiera ca³y rekord z listy zadañ, a nastêpnie wykonuje zadanie na maszynie odpowiedniego typu dla danego operatora.
-Instrukcja obs³ugi maszyny:
-Pracownik umieszcza rekord z zadaniem do wykonania w maszynie,
-Maszyna przez pewien czas wykonuje zadan¹ operacjê i umieszcza wynik w polu pole_na_wynik.
-Pracownik mo¿e wtedy odebraæ rekord z wynikiem i przenieœæ go do magazynu.
-Ka¿dy pracownik przy swoich narodzinach podejmuje losow¹ decyzjê czy jest “cierpliwy”, czy “niecierpliwy”. Cierpliwi pracownicy czekaj¹ w kolejce a¿ maszyna przyjmie ich zadanie do obs³ugi. Niecierpliwi pracownicy kr¹¿¹ ze swoim zadaniem miêdzy maszynami,  czekaj¹c jedynie przez krótki czas przy ka¿dej z nich, a¿ uda im siê uzyskaæ dostêp do jednej z nich.
-Ka¿dy pracownik prowadzi statystyki: ile uda³o mu siê wykonaæ zadañ.
-Zak³adamy, ¿e maszyny licz¹ce mog¹ ulegaæ awariom. 
-W przypadku awarii, maszyna bêdzie uszkodzona a¿ do jej naprawy 
-zwracaj¹c ka¿de zadanie z pustym polem na wynik,
-a pracownik, który dostaje taki  taki zwrot, zg³asza awariê do serwisu i usi³uje wykonaæ swoje zadanie na innej maszynie tego samego typu.
-Serwis, po otrzymaniu zg³oszenia o awarii maszyny,  wysy³a swojego pracownika serwisowego do jej naprawy.  (Serwis i pracownik serwisowy maj¹ byæ osobnymi w¹tkami. Liczba pracowników serwisowych jest ograniczona, mniejsza ni¿ liczba maszyn.)
-Pracownik serwisowy po dotarciu do maszyny (co zajmuje mu pewien czas) wykonuje naprawê usterki, co polega na wys³aniu do niej specjalnego polecenia przez specjalny kana³ "backdoor".
-Po wykonaniu naprawy, pracownik serwisowy zg³asza usuniêcie awarii do serwisu.
-
-Symulator dzia³a w dwóch trybach:
-w trybie “gadatliwym” albo
-w trybie “spokojnym”.
-
-W trybie “gadatliwym” wypisywane s¹ na bie¿¹co komunikaty o zdarzeniach które zachodz¹ w przedsiêbiorstwie.
-W trybie “spokojnym”, dzia³aj¹cy symulator oczekuje na polecenia u¿ytkownika. 
+W trybie â€œgadatliwymâ€ wypisywane sÄ… na bieÅ¼Ä…co komunikaty o zdarzeniach ktÃ³re zachodzÄ… w przedsiÄ™biorstwie.
+W trybie â€œspokojnymâ€, dziaÅ‚ajÄ…cy symulator oczekuje na polecenia uÅ¼ytkownika. 
 
 
 
